@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +9,70 @@
 </head>
 <body>
   <main class="game">
-    <h1>collect: water</h1>
-    <p>Collect blue water. Avoid black droplets!</p>
+    <section class="screen home-screen" id="home-screen" aria-labelledby="game-title">
+      <div class="menu-panel home-panel">
+        <h1 id="game-title">collect: water</h1>
+        <div class="difficulty-options" role="group" aria-label="Choose difficulty">
+          <button id="easy-mode" class="difficulty-button" type="button" aria-pressed="false">EASY</button>
+          <button id="med-mode" class="difficulty-button" type="button" aria-pressed="true">MED</button>
+          <button id="hard-mode" class="difficulty-button" type="button" aria-pressed="false">HARD</button>
+        </div>
+        <p id="difficulty-details">Med: 1× speed, 3 lives, 100 points per level (1,000 to win).</p>
+        <button id="play-button" type="button">START GAME</button>
+      </div>
+      <img class="charity-logo" src="img/cw_logo_horizontal.png" alt="charity: water">
+    </section>
 
-    <div class="hud">
-      <p>Score: <span id="score">0</span></p>
-      <p>Lives: <span id="lives">3</span></p>
-    </div>
+    <section class="screen play-screen" id="play-screen" hidden aria-label="Game">
+      <header class="hud">
+        <div class="stats" aria-live="polite">
+          <p>Lives: <span id="lives" aria-label="3 lives">♥♥♥</span></p>
+          <p>Score: <span id="score">0</span></p>
+          <p>Level: <span id="level">1</span></p>
+        </div>
+        <button class="menu-toggle" id="pause-button" type="button" aria-label="Pause game" aria-haspopup="dialog">
+          <span></span><span></span><span></span>
+        </button>
+      </header>
 
-    <canvas id="canvas" width="500" height="500" aria-label="Water collection game"></canvas>
+      <div class="game-layout">
+        <aside class="instructions">
+          <h2>How to play</h2>
+          <p>Collect blue droplets and avoid the black ones. Missing a blue droplet costs one life.</p>
+          <p>Each blue droplet earns 10 points. Catching a black droplet costs 10 points and one life.</p>
+        </aside>
 
-    <button id="reset" type="button">Reset Game</button>
-    <p id="message" aria-live="polite"></p>
-    <p class="instructions">Move your cursor or drag your finger across the screen to move the bucket.</p>
-    <p class="footer">Inspired by charity: water's mission.</p>
+        <div class="play-area" id="play-area" aria-label="Move the bucket to collect blue droplets">
+          <div class="drops" id="drops" aria-hidden="true"></div>
+          <img class="bucket" id="bucket" src="img/can.png" alt="" aria-hidden="true">
+          <div class="bucket-controls" aria-label="Bucket movement">
+            <button class="move-button" id="left-button" type="button" aria-label="Move bucket left">‹</button>
+            <button class="move-button" id="right-button" type="button" aria-label="Move bucket right">›</button>
+          </div>
+        </div>
+      </div>
+      <p class="milestone-message" id="milestone-message" aria-live="polite" hidden></p>
+      <img class="charity-logo game-logo" src="img/cw_logo_horizontal.png" alt="charity: water">
+
+      <section class="menu-overlay" id="pause-menu" role="dialog" aria-modal="true" aria-labelledby="pause-title" hidden>
+        <div class="menu-panel">
+          <h2 id="pause-title">PAUSED</h2>
+          <button type="button" data-action="resume">RESUME</button>
+          <button type="button" data-action="restart-level">RESTART LEVEL</button>
+          <button type="button" data-action="restart-game">RESTART GAME</button>
+          <button type="button" data-action="home">EXIT TO MENU</button>
+        </div>
+      </section>
+
+      <section class="menu-overlay" id="end-menu" role="dialog" aria-modal="true" aria-labelledby="end-title" hidden>
+        <div class="menu-panel">
+          <h2 id="end-title"></h2>
+          <p class="end-score" id="end-score"></p>
+          <p class="end-milestone" id="end-milestone" hidden></p>
+          <div id="end-actions"></div>
+        </div>
+      </section>
+    </section>
   </main>
 </body>
 </html>
