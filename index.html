@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>collect: water</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="game">
+    <h1>collect: water</h1>
+    <p>Collect blue water. Avoid black droplets!</p>
+
+    <div class="hud">
+      <p>Score: <span id="score">0</span></p>
+      <p>Lives: <span id="lives">3</span></p>
+    </div>
+
+    <canvas id="canvas" width="500" height="500" aria-label="Water collection game"></canvas>
+
+    <button id="reset" type="button">Reset Game</button>
+    <p id="message" aria-live="polite"></p>
+    <p class="instructions">Move your cursor or drag your finger across the screen to move the bucket.</p>
+    <p class="footer">Inspired by charity: water's mission.</p>
+  </main>
+</body>
+</html>
